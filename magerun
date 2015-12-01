@@ -1,0 +1,3 @@
+#!/bin/bash -x
+
+php -dmemory_limit=1G /magerun --skip-root-check --root-dir=$MAGENTO_ROOT $@

@@ -1,0 +1,13 @@
+#!/bin/bash -x
+
+VERSION=`echo $2 | sed -n 's/.*-\(.*\)/\1/p'`
+VER=`echo "${VERSION//./}"`
+if [ $1 == 'file' ] ; then
+    if [ $VER -gt 1900 ] ; then # use magedownload-cli only for magento > 1.9.0.0
+        if [ ! -f /tmp/magento-ce-${VERSION}.tar.gz ] ; then
+            php -dmemory_limit=1G /magedownload-cli --id=${MAGEDOWNLOAD_ID} --token=${MAGEDOWNLOAD_TOKEN} file magento-${VERSION}.tar.gz $3/$2.tar.gz
+        fi
+    fi
+else
+    php -dmemory_limit=1G /magedownload-cli --id=${MAGEDOWNLOAD_ID} --token=${MAGEDOWNLOAD_TOKEN} $@
+fi

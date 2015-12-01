@@ -1,0 +1,4 @@
+#!/bin/bash
+
+/magedbm configure --key="$AWS_ACCESS_KEY_ID" --secret="$AWS_SECRET_ACCESS_KEY" --region="$AWS_REGION" --bucket="$AWS_BUCKET"
+cd $MAGE_ROOT_DIR && php -dmemory_limit=1G /magedbm $@
